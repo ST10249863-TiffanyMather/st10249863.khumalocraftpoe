@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KhumaloCraft_Part2.Models.Product>
+
+@{
+    ViewData["Title"] = "My Work";
+    string searchString = ViewData["CurrentFilter"] as string;
+}
+
+<h1 class="text-center mb-4">My Work</h1>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3 mb-4">
+        <form id="searchForm" asp-action="Index" asp-controller="MyWork" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Product Name" name="searchString" value="@searchString" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="resetSearch()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm text-center">
+                <img class="card-img-top" src="data:image/jpeg;base64,@product.ProductImage" alt="Product Image" height="230px">
+                <div class="card-body">
+                    <h5 class="card-title">@product.ProductName</h5>
+                    <p class="card-text">@product.ProductDescription</p>
+                    <p class="card-text"><span class="seagreen"><strong>Category:</strong></span> @product.ProductCategory</p>
+                    <p class="card-text"><span class="seagreen"><strong>Artisan:</strong></span> @product.ProductArtisan</p>
+                    <p class="card-text"><span class="seagreen"><strong>Price:</strong></span> @($"R{product.ProductPrice:0.00}")</p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="btn-group">
+                            @if (product.ProductAvailable == true)
+                            {
+                                <a href="@Url.Action("PlaceOrder", "MyWork", new { id = product.ProductId })" class="btn btn-sm btn-success">Place Order</a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-sm btn-secondary" disabled>Out of Stock</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function resetSearch() {
+            document.getElementById('searchForm').reset();
+            document.getElementById('searchForm').submit();
+        }
+    </script>
+}

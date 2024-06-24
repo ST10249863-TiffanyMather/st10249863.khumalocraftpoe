@@ -1,0 +1,50 @@
+a.navbar-brand[b-tqeznn6ctz] {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a[b-tqeznn6ctz] {
+    color: #0077cc;
+}
+
+.btn-primary[b-tqeznn6ctz] {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-tqeznn6ctz], .nav-pills .show > .nav-link[b-tqeznn6ctz] {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top[b-tqeznn6ctz] {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom[b-tqeznn6ctz] {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-tqeznn6ctz] {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-tqeznn6ctz] {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+.footer[b-tqeznn6ctz] {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    text-align: center;
+}

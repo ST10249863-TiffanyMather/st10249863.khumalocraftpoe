@@ -1,0 +1,67 @@
+﻿@model KhumaloCraft_Part2.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <h1 class="text-center">Delete Product</h1>
+
+    <h3 class="text-center">Are you sure you want to delete this?</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <hr />
+            <dl class="row">
+                <dt class="col-5 pl-4">
+                    <strong>Product Name:</strong>
+                </dt>
+                <dd class="col-7">
+                    <p class="text-left">@Html.DisplayFor(model => model.ProductName)</p>
+                </dd>
+                <dt class="col-5 pl-4">
+                    <strong>Description:</strong>
+                </dt>
+                <dd class="col-7">
+                    <p class="text-left">@Html.DisplayFor(model => model.ProductDescription)</p>
+                </dd>
+                <dt class="col-5 pl-4">
+                    <strong>Price:</strong>
+                </dt>
+                <dd class="col-7">
+                    <p class="text-left">@Model.ProductPrice?.ToString("F2")</p>
+                </dd>
+                </dd>
+                <dt class="col-5 pl-4">
+                    <strong>Category:</strong>
+                </dt>
+                <dd class="col-7">
+                    <p class="text-left">@Html.DisplayFor(model => model.ProductCategory)</p>
+                </dd>
+                <dt class="col-5 pl-4">
+                    <strong>Available:</strong>
+                </dt>
+                <dd class="col-7">
+                    <p class="text-left">@((Model.ProductAvailable ?? false) ? "Available" : "Out of Stock")</p>
+                </dd>
+                <dt class="col-5 pl-4">
+                    <strong>Artisan Name:</strong>
+                </dt>
+                <dd class="col-7">
+                    <p class="text-left">@Html.DisplayFor(model => model.ProductArtisan)</p>
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="ProductId" />
+                <div class="form-group text-center" style="margin-top: 10px;">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </div>
+            </form>
+
+            <div class="text-center" style="margin-top: 10px;">
+                <a asp-action="Index">Back to List</a>
+            </div>
+
+        </div>
+    </div>
+</div>

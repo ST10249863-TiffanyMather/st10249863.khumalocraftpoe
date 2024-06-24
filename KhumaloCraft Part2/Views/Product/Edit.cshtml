@@ -1,0 +1,82 @@
+﻿@model KhumaloCraft_Part2.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Edit Product</h1>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"><strong>Product Name:</strong></label>
+                <input asp-for="ProductName" class="form-control" required />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label"><strong>Description:</strong></label>
+                <input asp-for="ProductDescription" class="form-control" required />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"><strong>Price:</strong></label>
+                <input asp-for="ProductPrice" class="form-control" type="number" value="@Model.ProductPrice?.ToString("F2")" required />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductCategory" class="control-label"><strong>Category:</strong></label>
+                <select asp-for="ProductCategory" class="form-control">
+                    <option value="Handmade Pottery">Handmade Pottery</option>
+                    <option value="Artisanal Textiles">Artisanal Textiles</option>
+                    <option value="Artistic Woodwork">Artistic Woodwork</option>
+                    <option value="Handcrafted Glassware">Handcrafted Glassware</option>
+                    <option value="Unique Metalwork">Unique Metalwork</option>
+                    <option value="Handmade Jewellery">Handmade Jewellery</option>
+                </select>
+                <span asp-validation-for="ProductCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductAvailable" class="control-label"><strong>Availability:</strong></label>
+                <select asp-for="ProductAvailable" class="form-control">
+                    <option value="True" selected="@(Model.ProductAvailable.HasValue && Model.ProductAvailable.Value)">Available</option>
+                    <option value="False" selected="@(Model.ProductAvailable.HasValue && !Model.ProductAvailable.Value)">Out of Stock</option>
+                </select>
+                <span asp-validation-for="ProductAvailable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"><strong>Current Image:</strong></label>
+                <br />
+                <img src="data:image/jpeg;base64,@Model.ProductImage" width="120px" height="80px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"><strong>Change Image:</strong></label>
+                <input type="file" asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductArtisan" class="control-label"><strong>Artisan:</strong></label>
+                <input asp-for="ProductArtisan" class="form-control" required />
+                <span asp-validation-for="ProductArtisan" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="text-center" style="margin-top: 10px;">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

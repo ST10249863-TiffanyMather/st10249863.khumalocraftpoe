@@ -1,0 +1,85 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: mintcream;
+}
+
+.image-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.image-container {
+    width: 200px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+
+.btn-custom {
+    background-color: mediumseagreen;
+    border-color: mediumseagreen;
+}
+
+    .btn-custom:hover {
+        background-color: seagreen;
+        border-color: seagreen;
+    }
+
+.text-left {
+    text-align: left;
+    width: 70%;
+}
+
+.image-right {
+    float: right;
+}
+
+h1 {
+    color: seagreen;
+}
+
+h2, h4, h5 {
+    color: mediumseagreen;
+}
+
+h3 {
+    color: darkseagreen;
+}
+
+.seagreen {
+    color: seagreen;
+}
+
+
+a {
+    color: darkseagreen;
+}
+
+    a:hover {
+        color: seagreen;
+    }

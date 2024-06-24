@@ -1,0 +1,66 @@
+﻿@model KhumaloCraft_Part2.Models.Transaction
+
+@{
+    ViewData["Title"] = "Edit";
+    var productNames = ViewData["ProductNames"] as List<string>;
+}
+
+<h1 class="text-center">Process Order</h1>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="TransactionId" /> 
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="TransactionDate" class="control-label"><strong>Transaction Date:</strong></label>
+                <input asp-for="TransactionDate" class="form-control" readonly="readonly" />
+                <span asp-validation-for="TransactionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"><strong>Product Names:</strong></label>
+                <input class="form-control" readonly="readonly" value="@string.Join(", ", productNames)" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionPaymentMethod" class="control-label"><strong>Payment Method:</strong></label>
+                <input asp-for="TransactionPaymentMethod" class="form-control" readonly="readonly" />
+                <span asp-validation-for="TransactionPaymentMethod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionTotalPrice" class="control-label"><strong>Total Price:</strong></label>
+                <input asp-for="TransactionTotalPrice" class="form-control" type="text" readonly="readonly"
+                       value="@string.Format("{0:0.00}", Model.TransactionTotalPrice)" />
+                <span asp-validation-for="TransactionTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"><strong>Email:</strong></label>
+                <input type="text" value="@ViewData["UserEmail"]" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionStatus" class="control-label"><strong>Status:</strong></label>
+                <select asp-for="TransactionStatus" class="form-control">
+                    <option value="Pending">Pending</option>
+                    <option value="Processed">Processed</option>
+                </select>
+                <span asp-validation-for="TransactionStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center" style="margin-top: 10px;">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

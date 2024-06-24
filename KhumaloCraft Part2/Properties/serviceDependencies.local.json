@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/southafricanorth/connectors/ConnectionStringsAzureConnection_4A19D787D1",
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/khumalocraftserver-st10249863/databases/aspnet-KhumaloCraft_Part2-25b0f46d-c32c-4335-b035-7ceaeabcf780",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:AzureConnection"
+    }
+  }
+}

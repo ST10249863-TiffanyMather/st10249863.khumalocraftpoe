@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KhumaloCraft_Part2.Models.ProductTransaction>
+
+@{
+    ViewData["Title"] = "Order History";
+    var selectedStatus = ViewBag.SelectedStatus ?? "All";
+}
+
+<h1 class="text-center mb-4">Order History</h1>
+
+<div class="mb-3">
+    <label for="statusFilter" class="form-label">Filter by Status:</label>
+    <select id="statusFilter" class="form-select">
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Processed">Processed</option>
+    </select>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="text-center">You haven't ordered any products yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction Date</th>
+                <th>Product Name</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Payment Method</th>
+                <th>Total Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Transaction.TransactionDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
+                    <td><img src="data:image/jpeg;base64,@item.Product.ProductImage" width="120px" height="80px" /></td>
+                    <td>@Html.DisplayFor(modelItem => item.Product.ProductCategory)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Transaction.TransactionPaymentMethod)</td>
+                    <td>@($"R{item.Transaction.TransactionTotalPrice:0.00}")</td>
+                    <td>@Html.DisplayFor(modelItem => item.Transaction.TransactionStatus)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var selectedStatus = '@selectedStatus';
+            $('#statusFilter').val(selectedStatus);
+
+            $('#statusFilter').change(function () {
+                var status = $(this).val();
+                var url = '@Url.Action("Index", "ProductTransaction")';
+                if (status !== "All") {
+                    url += '?status=' + status;
+                }
+                window.location.href = url;
+            });
+        });
+    </script>
+}

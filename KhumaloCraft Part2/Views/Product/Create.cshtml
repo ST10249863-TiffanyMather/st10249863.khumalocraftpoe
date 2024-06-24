@@ -1,0 +1,66 @@
+﻿@model KhumaloCraft_Part2.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Add a Product</h1>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"><strong>Product Name:</strong></label>
+                <input asp-for="ProductName" class="form-control" required />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label"><strong>Description:</strong></label>
+                <input asp-for="ProductDescription" class="form-control" required />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"><strong>Price:</strong></label>
+                <input asp-for="ProductPrice" class="form-control" type="number" required />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductCategory" class="control-label"><strong>Category:</strong></label>
+                <select asp-for="ProductCategory" class="form-control" required>
+                    <option value="Handmade Pottery">Handmade Pottery</option>
+                    <option value="Artisanal Textiles">Artisanal Textiles</option>
+                    <option value="Artistic Woodwork">Artistic Woodwork</option>
+                    <option value="Handcrafted Glassware">Handcrafted Glassware</option>
+                    <option value="Unique Metalwork">Unique Metalwork</option>
+                    <option value="Handmade Jewellery">Handmade Jewellery</option>
+                </select>
+                <span asp-validation-for="ProductCategory" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ProductAvailable" value="true" />
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"><strong>Add Image:</strong></label>
+                <input type="file" asp-for="ImageFile" class="form-control" required />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductArtisan" class="control-label"><strong>Artisan Name:</strong></label>
+                <input asp-for="ProductArtisan" class="form-control" required />
+                <span asp-validation-for="ProductArtisan" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center" style="margin-top: 10px;">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

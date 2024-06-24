@@ -1,0 +1,44 @@
+﻿@model IEnumerable<KhumaloCraft_Part2.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center mb-4">Products</h1>
+
+<p>
+    <a asp-action="Create">Add a Product</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width: 140px">Product Name</th>
+            <th style="width: 220px">Description</th>
+            <th style="width: 40px">Price</th>
+            <th style="width: 120px">Category</th>
+            <th style="width: 100px">Availability</th>
+            <th>Image</th>
+            <th style="width: 140px">Artisan</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width: 140px">@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td style="width: 220px">@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                <td style="width: 40px">@($"R{item.ProductPrice:0.00}")  </td>
+                <td style="width: 120px">@Html.DisplayFor(modelItem => item.ProductCategory)</td>
+                <td style="width: 100px">@(item.ProductAvailable == true ? "Available" : "Out of Stock")</td>
+                <td><img src="data:image/jpeg;base64,@item.ProductImage" width="120px" height="80px" /></td>
+                <td style="width: 140px">@Html.DisplayFor(modelItem => item.ProductArtisan)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
